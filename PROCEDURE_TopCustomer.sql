@@ -1,0 +1,12 @@
+CREATE PROCEDURE TopCustomer_PROCEDURE
+--ALTER PROCEDURE TopCustomer_PROCEDURE
+AS
+SELECT TOP 10 C.NAME + ' ' +C.SURNAME AS SalesNameSurname, C.COUNTRY, C.CITY, C.BIRTDATE, C.GENDER, SUM(SD.Total_Cost) AS Total_Cost
+FROM [staj].[dbo].[Customer] C
+
+LEFT JOIN [staj].[dbo].[Sales_Detail] SD ON SD.Customer_ID= C.ID
+
+
+GROUP BY C.NAME, C.SURNAME, C.COUNTRY, C.CITY, C.BIRTDATE, C.GENDER ORDER BY Total_Cost DESC
+
+--TopCustomer_PROCEDURE
